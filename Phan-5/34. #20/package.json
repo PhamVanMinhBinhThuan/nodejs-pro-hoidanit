@@ -9,9 +9,14 @@
     "dev": "nodemon"
   },
   "nodemonConfig": {
-    "watch": ["src/**/*"],
+    "watch": [
+      "src/**/*"
+    ],
     "ext": "ts",
-    "ignore": ["node_modules/**/*", "dist/**/*"],
+    "ignore": [
+      "node_modules/**/*",
+      "dist/**/*"
+    ],
     "exec": "ts-node ./src/App.ts",
     "legacyWatch": true,
     "delay": 500,
@@ -20,6 +25,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "16.4.7",
     "express": "5.0.1"
   },
   "devDependencies": {
