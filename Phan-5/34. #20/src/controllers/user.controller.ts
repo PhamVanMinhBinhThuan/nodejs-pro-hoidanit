@@ -1,5 +1,5 @@
 import { Request, Response } from "express";    // Để sử dụng kiểu dữ liệu cho req, res
-import { getAllUsers, handleCreateUser, handleDeleteUser } from "services/user.service"; // Khi mà gõ services/* thì nó hiểu là ./src/services/* --> Được định nghĩa ở phần path trong user.service.ts ở phần path
+import { getAllUsers, handleCreateUser, handleDeleteUser, getUserByID } from "services/user.service"; // Khi mà gõ services/* thì nó hiểu là ./src/services/* --> Được định nghĩa ở phần path trong user.service.ts ở phần path
 
 const getHomePage = async (req: Request, res: Response) => {
     // Get users
@@ -28,7 +28,17 @@ const postDeleteUser = async (req: Request, res: Response) => {
     // console.log(req.params.id);
     const { id } = req.params;
     await handleDeleteUser(id);     // Vì hàm handleDeleteUser được định nghĩa là async nên cần có await và hàm gọi nó cũng cần async
-    return res.redirect("/");   // Dùng res.redirect thì đường URL hiện trên trình duyệt mới đúng, res.render thì không đúng
+    return res.redirect("/");   
 }
 
-export { getHomePage, getCreateUserPage, postCreateUser, postDeleteUser };
+const getViewUser = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const user = await getUserByID(id);
+
+    return res.render("view-user.ejs", {
+        id: id,
+        user: user,
+    });   
+}
+
+export { getHomePage, getCreateUserPage, postCreateUser, postDeleteUser, getViewUser };
