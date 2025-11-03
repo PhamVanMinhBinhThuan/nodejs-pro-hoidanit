@@ -31,4 +31,19 @@ const getAllUsers = async() => {
     }
 }
 
-export { handleCreateUser, getAllUsers }
+const handleDeleteUser = async (id: string) => {
+    try {
+        const connection = await getConnection();
+
+        const sql = 'DELETE FROM `users` WHERE `id` = ? LIMIT 1';  // LIMIT 1 xóa 1 phần tử đầu tiên thôi, nhưng ID là duy nhất xóa cs dc
+        const values = [id];
+
+        const [result, fields] = await connection.execute(sql, values);
+
+        return result;
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+export { handleCreateUser, getAllUsers, handleDeleteUser }
