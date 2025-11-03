@@ -38,7 +38,8 @@
                   <td><%= user.address %></td>
                   <td>
                     <form action="/handle-delete-user/<%= user.id %>" method="post">
-                      <button type = "submit" class="btn btn-danger">Delete</button>
+                      <!-- Nhớ có type = submit để gửi form -->
+                      <button type = "submit" class="btn btn-danger">Delete</button>    
                     </form>                    
                   </td>
                 </tr>

@@ -7,7 +7,7 @@ const webRoutes = (app: Express) => {
   router.get("/", getHomePage);   // Gọi hàm getHomePage mà không truyền gì hết thì nó sẽ truyền tất cả cho getHomePage ở user.controller trong đó có tham số req, res
   router.get("/create-user", getCreateUserPage);
   router.post("/handle-create-user", postCreateUser);
-  router.post("/handle-delete-user/:id", postDeleteUser);
+  router.post("/handle-delete-user/:id", postDeleteUser);   // Nếu không có dấu : thì code sẽ bị lỗi dấu : để hiểu đó là tham số
 
   app.use("/", router);     // Website xuat phat tu duong link URL nay
 };
