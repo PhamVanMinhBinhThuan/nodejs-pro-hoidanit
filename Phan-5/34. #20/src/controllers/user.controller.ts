@@ -21,8 +21,13 @@ const postCreateUser = async (req: Request, res: Response) => {
     // Do hàm handleCreateUser định nghĩa ở service là async nên có await và async
     // Lưu ý khi thao tác với database cần phải có await và async không thì sẽ bị lỗi
     await handleCreateUser(fullName, email, address);
-    
     return res.redirect("/");   // Dùng res.redirect thì đường URL hiện trên trình duyệt mới đúng, res.render thì không đúng
 }
 
-export { getHomePage, getCreateUserPage, postCreateUser };
+const postDeleteUser = async (req: Request, res: Response) => {
+    // console.log(req.params.id);
+    const { id } = req.params;
+    return res.redirect("/");   // Dùng res.redirect thì đường URL hiện trên trình duyệt mới đúng, res.render thì không đúng
+}
+
+export { getHomePage, getCreateUserPage, postCreateUser, postDeleteUser };

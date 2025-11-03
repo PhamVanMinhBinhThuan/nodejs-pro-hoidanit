@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon",
     "dev": "nodemon",
-    "start:debug": "nodemon --exec \"node --inspect -r ts-node/register ./src/App.ts\""
+    "start:debug": "nodemon --exec \"node --inspect -r ts-node/register -r tsconfig-paths/register ./src/App.ts\""
   },
   "nodemonConfig": {
     "watch": [
