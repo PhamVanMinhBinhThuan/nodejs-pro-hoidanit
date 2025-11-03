@@ -13,7 +13,9 @@
     <div style="width: 600px; margin: auto" >
         <h3 style="padding: 20px 0px;">View detail a user id = <%= id %></h3>
         <!-- route  /handle-update-user-->
-        <form action="/handle-update-user" method="post">
+        <form action="/handle-update-user/<%= id%>" method="post">
+            <!-- Mẹo: Ô input này dùng cho dev để biết id của người dùng, display: none ẩn nó đi, để dùng req.body của BE thay vì res.params như ở trên -->
+            <input style= "display: none;" name="id" value="<%= user.id%>" />       
             <!-- mb: margin-bottom -->
             <div class="mb-3">     
                 <label class="form-label">Name: </label>

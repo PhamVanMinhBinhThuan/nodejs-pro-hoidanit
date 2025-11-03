@@ -1,5 +1,5 @@
 import { Request, Response } from "express";    // Để sử dụng kiểu dữ liệu cho req, res
-import { getAllUsers, handleCreateUser, handleDeleteUser, getUserByID } from "services/user.service"; // Khi mà gõ services/* thì nó hiểu là ./src/services/* --> Được định nghĩa ở phần path trong user.service.ts ở phần path
+import { getAllUsers, handleCreateUser, handleDeleteUser, getUserByID, updateUserByID } from "services/user.service"; // Khi mà gõ services/* thì nó hiểu là ./src/services/* --> Được định nghĩa ở phần path trong user.service.ts ở phần path
 
 const getHomePage = async (req: Request, res: Response) => {
     // Get users
@@ -41,4 +41,12 @@ const getViewUser = async (req: Request, res: Response) => {
     });   
 }
 
-export { getHomePage, getCreateUserPage, postCreateUser, postDeleteUser, getViewUser };
+const postUpdateUser = async (req: Request, res: Response) => {
+    const { id, email, address, fullName } = req.body;
+    // Update user by id
+    await updateUserByID(id, email, address, fullName);
+
+    return res.redirect("/");
+}
+
+export { getHomePage, getCreateUserPage, postCreateUser, postDeleteUser, getViewUser, postUpdateUser };

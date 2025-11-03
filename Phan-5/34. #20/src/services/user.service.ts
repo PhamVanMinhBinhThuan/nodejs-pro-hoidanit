@@ -64,6 +64,20 @@ const getUserByID = async (id: string) => {
     }
 }
 
+const updateUserByID = async (id: string, email: string, address: string, fullName: string) => {
+    try {
+        const connection = await getConnection();
 
+        // Trong SQL fullName được thiết lập là name
+        const sql = 'UPDATE `users` SET `name` = ?, `email` = ?, `address` = ?  WHERE `id` = ? LIMIT 1';    // Không có LIMIT 1 cũng được nó chỉ cập nhật phần từ đầu tiên có ID
+        const values = [fullName, email, address, id];
 
-export { handleCreateUser, getAllUsers, handleDeleteUser, getUserByID }
+        const [result, fields] = await connection.execute(sql, values);
+
+        return(result);
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+export { handleCreateUser, getAllUsers, handleDeleteUser, getUserByID, updateUserByID }
