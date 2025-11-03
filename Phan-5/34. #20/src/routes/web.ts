@@ -1,5 +1,5 @@
 import express, {Express} from "express";       // Express là kiểu dữ liệu type script cho app
-import { getCreateUserPage, getHomePage, postCreateUser } from "../controllers/user.controller";
+import { getCreateUserPage, getHomePage, postCreateUser } from "controllers/user.controller";     // Khi mà gõ controllers/* thì nó hiểu là ./src/controllers/* --> Được định nghĩa ở phần path trong user.service.ts ở phần path
 
 const router = express.Router();
 

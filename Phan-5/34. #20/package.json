@@ -18,7 +18,7 @@
       "node_modules/**/*",
       "dist/**/*"
     ],
-    "exec": "ts-node ./src/App.ts",
+    "exec": "ts-node -r tsconfig-paths/register ./src/App.ts",
     "legacyWatch": true,
     "delay": 500,
     "verbose": true
@@ -37,6 +37,7 @@
     "@types/node": "22.10.7",
     "nodemon": "3.1.9",
     "ts-node": "10.9.2",
+    "tsconfig-paths": "4.2.0",
     "typescript": "5.7.3"
   }
 }

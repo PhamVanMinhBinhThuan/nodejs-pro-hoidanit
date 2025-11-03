@@ -1,5 +1,5 @@
 import { Request, Response } from "express";    // Để sử dụng kiểu dữ liệu cho req, res
-import { getAllUsers, handleCreateUser } from "../services/user.service";
+import { getAllUsers, handleCreateUser } from "services/user.service"; // Khi mà gõ services/* thì nó hiểu là ./src/services/* --> Được định nghĩa ở phần path trong user.service.ts ở phần path
 
 const getHomePage = async (req: Request, res: Response) => {
     // Get users

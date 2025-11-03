@@ -1,4 +1,4 @@
-import getConnection from "../config/database";
+import getConnection from "config/database";    // Khi mà gõ config/* thì nó hiểu là ./src/config/* --> Được định nghĩa ở phần path trong user.service.ts ở phần path
 
 // User.service sẽ phụ tá cho user.controller
 const handleCreateUser = async (
