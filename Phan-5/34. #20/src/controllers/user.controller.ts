@@ -1,8 +1,13 @@
 import { Request, Response } from "express";    // Để sử dụng kiểu dữ liệu cho req, res
-import { handleCreateUser } from "../services/user.service";
+import { getAllUsers, handleCreateUser } from "../services/user.service";
 
-const getHomePage = (req: Request, res: Response) => {
-    return res.render("home.ejs");
+const getHomePage = async (req: Request, res: Response) => {
+    // Get users
+    const users = await getAllUsers();  // Có await thì phải khai báo hàm async
+    console.log("Check users: ", users);
+    return res.render("home.ejs", {
+        name: users
+    });
 }
 
 const getCreateUserPage = (req: Request, res: Response) => {

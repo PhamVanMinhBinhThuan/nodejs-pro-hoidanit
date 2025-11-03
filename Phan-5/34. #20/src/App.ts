@@ -1,7 +1,6 @@
 import express from "express";
 import 'dotenv/config'  // Biến mỗi trường
 import webRoutes from "./routes/web";
-import getConnection from "./config/database";
 
 const app = express();      // Tạo một đối tượng express
 const port = process.env.PORT || 3000;    // process là đối tượng của env, PORT được định nghĩa trong .env
@@ -20,9 +19,6 @@ app.use(express.static('public'));
 // Config routes
 // Nên để cuối, cấu hình xong hết đi
 webRoutes(app);   // Hàm webRoute được định nghĩa ở web.ts
-
-// Gọi database MySQL 
-getConnection();
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
