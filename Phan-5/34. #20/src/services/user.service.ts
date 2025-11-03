@@ -41,36 +41,26 @@ const handleDeleteUser = async (id: string) => {
 }
 
 const getUserByID = async (id: string) => {
-    try {
-        const connection = await getConnection();
+    const user = await prisma.user.findUnique({
+        where: {
+            id: +id
+        }
+    });
 
-        const sql = 'SELECT * FROM `users` WHERE `id` = ?';
-        const values = [id];
-
-        const [result, fields] = await connection.execute(sql, values);
-
-        return result[0];       // Nếu chỉ return result thì nó sẽ trả về 1 mảng 
-                                // các đối tượng mà tìm thấy nên không thể sử dụng được nên cần truy cập vào phần tử 0 để trả về 1 đối tượng
-    } catch (err) {
-        console.log(err);
-        return [];
-    }
+    return user;
 }
 
 const updateUserByID = async (id: string, email: string, address: string, fullName: string) => {
-    try {
-        const connection = await getConnection();
+    const updatedUser = await prisma.user.update ({
+        where: { id: +id },     // Ở trong bảng dữ liệu định nghĩa id kiểu int nhưng dữ liệu truyền vào là string, có 1 cách để chuyển từ string sang int là dùng dấu +
+        data: {
+            name: fullName,
+            email: email,
+            address: address
+        }
+    })
 
-        // Trong SQL fullName được thiết lập là name
-        const sql = 'UPDATE `users` SET `name` = ?, `email` = ?, `address` = ?  WHERE `id` = ? LIMIT 1';    // Không có LIMIT 1 cũng được nó chỉ cập nhật phần từ đầu tiên có ID
-        const values = [fullName, email, address, id];
-
-        const [result, fields] = await connection.execute(sql, values);
-
-        return(result);
-    } catch (err) {
-        console.log(err);
-    }
+    return updatedUser;
 }
 
 export { handleCreateUser, getAllUsers, handleDeleteUser, getUserByID, updateUserByID }
